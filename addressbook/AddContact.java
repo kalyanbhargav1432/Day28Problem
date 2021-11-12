@@ -164,7 +164,7 @@ public class AddContact extends PersonDetail {
 
 	public static void readFromFile() {
 		try {
-			FileReader fileReader = new FileReader("AddressBook.csv");
+			FileReader fileReader = new FileReader("AddressBook.JSON");
 			int i;
 			while ((i = fileReader.read()) != -1) {
 				System.out.print((char) i);
