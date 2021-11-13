@@ -22,7 +22,7 @@ public class AddContact extends PersonDetail {
 		setPhoneNumber(scanData.nextLine());
 		System.out.println("enter the city name");
 		setCity(scanData.nextLine());
-		System.out.println("enter the Zip/postal Code");
+		System.out.println("enter the Zip Code");
 		setZip(scanData.nextLine());
 		System.out.println("enter the Email");
 		setEmail(scanData.nextLine());
