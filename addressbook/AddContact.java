@@ -1,5 +1,7 @@
 package addressbook;
 
+import com.google.gson.Gson;
+
 import java.io.*;
 import java.util.*;
 import java.util.stream.*;
@@ -20,7 +22,7 @@ public class AddContact extends PersonDetail {
 		setPhoneNumber(scanData.nextLine());
 		System.out.println("enter the city name");
 		setCity(scanData.nextLine());
-		System.out.println("enter the Zip/postal Code");
+		System.out.println("enter the Zip Code");
 		setZip(scanData.nextLine());
 		System.out.println("enter the Email");
 		setEmail(scanData.nextLine());
@@ -150,11 +152,11 @@ public class AddContact extends PersonDetail {
 					.collect(Collectors.toList()));
 	}
 
-	public void writeIntoFile(Hashtable<Integer, ArrayList<AddContact>> hashtableCopy)
-			throws IOException, ClassNotFoundException {
+	public static void writeToFile(Hashtable<Integer, ArrayList<AddContact>> addContactDetails) {
 		try {
-			FileWriter fileWriter = new FileWriter("AddressBook.txt");
-			String stream = String.valueOf(hashtableCopy);
+			Gson gson = new Gson();
+			String stream = gson.toJson(addContactDetails);
+			FileWriter fileWriter = new FileWriter("AddressBook.json");
 			fileWriter.write(stream);
 			fileWriter.close();
 		} catch (Exception e) {
@@ -164,11 +166,10 @@ public class AddContact extends PersonDetail {
 
 	public static void readFromFile() {
 		try {
-			FileReader fileReader = new FileReader("AddressBook.JSON");
-			int i;
-			while ((i = fileReader.read()) != -1) {
-				System.out.print((char) i);
-			}
+			Gson gson = new Gson();
+			BufferedReader filepath = new BufferedReader(new FileReader("AddressBook.json"));
+			ArrayList<AddContact> arrayList = gson.fromJson(filepath, ArrayList.class);
+			System.out.println(arrayList);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
