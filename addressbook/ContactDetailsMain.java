@@ -66,7 +66,7 @@ public class ContactDetailsMain {
 				}
 			}
 			hashTable.put(i, addDetailsToArryList);
-			addPersonDetails.writeIntoFile(hashTable);
+			addPersonDetails.writeToFile(hashTable);
 			if (hashTable.size() == addressBookLimit) {
 				System.out.println(
 						"Do you wnat to search the persons who belong to this state or city y :- yes N :- no ");
